@@ -10,29 +10,23 @@ repositories {
     mavenCentral()
 }
 
-ext {
-    allureVersion = "2.13.7"
-    selenideVersion = "5.16.2"
-    junitVersion = "5.7.0"
-}
-
 allure {
-    version = "${allureVersion}"
+    version = "2.13.6"
     autoconfigure = true
     aspectjweaver = true
     useJUnit5 {
-        version = "${allureVersion}"
+        version = "2.13.6"
     }
 }
 
 dependencies {
     testImplementation "org.aspectj:aspectjweaver:1.9.5"
-    testImplementation "com.codeborne:selenide:${selenideVersion}"
-    testImplementation "io.qameta.allure:allure-selenide:${allureVersion}"
+    testImplementation "com.codeborne:selenide:5.16.2"
+    testImplementation "io.qameta.allure:allure-selenide:2.13.6"
     testImplementation "ch.qos.logback:logback-classic:1.2.3"
 
-    testImplementation "org.junit.jupiter:junit-jupiter-api:${junitVersion}"
-    testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:${junitVersion}"
+    testImplementation "org.junit.jupiter:junit-jupiter-api:5.7.0"
+    testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:5.7.0"
 }
 
 tasks.withType(JavaCompile) {
