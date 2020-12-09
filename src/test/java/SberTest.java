@@ -44,6 +44,26 @@ public class SberTest {
             $x("//*[contains(@class, 'page-teaser-dict__header')]").shouldHave(Condition.exactText("Сберегательный счет"));
         });
     }
+
+    @Test
+    void searchWeatherByYandex() {
+        step("Открываем яндекс", (step) -> {
+            open("https://yandex.ru/");
+        });
+        step("Вбиваем в поиске 'Погода'", (step) -> {
+            $("#text").val("Погода").pressEnter();
+
+        });
+        step("Проверяем что в поисковой выдаче есть сайт Gismeteo", (step) -> {
+            $("body").shouldHave(Condition.text("gismeteo.ru"));
+        });
+    }
+
+    @Test
+
+
+
+
     @AfterEach
     @Step("Attachments")
     public void afterEach(){
