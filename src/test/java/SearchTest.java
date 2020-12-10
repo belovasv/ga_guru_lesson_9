@@ -13,6 +13,8 @@ import static io.qameta.allure.Allure.step;
 
 public class SearchTest {
 
+    static String remoteBrowserUrl = System.getProperty("remote.browser.url","selenoid.autotests.cloud");
+
     @BeforeAll
     static void setup (){
         Configuration.startMaximized = true;
@@ -23,7 +25,7 @@ public class SearchTest {
         capabilities.setCapability("enableVideo", true);
         Configuration.browserCapabilities = capabilities;
 
-       // Configuration.remote = "https://user1:1234@" + System.getProperty("remote.browser.url") + ":4444/wd/hub/";
+       Configuration.remote = "https://user1:1234@" + remoteBrowserUrl + ":4444/wd/hub/";
     }
 
     @Test
@@ -40,18 +42,13 @@ public class SearchTest {
         });
     }
 
-    @Test
-
-
-
-
     @AfterEach
     @Step("Attachments")
     public void afterEach(){
         Helper.attachScreenshot("Last screenshot");
         Helper.attachPageSource();
         Helper.attachAsText("Browser console logs", Helper.getConsoleLogs());
-       // Helper.attachVideo();
+        Helper.attachVideo(remoteBrowserUrl);
 
         closeWebDriver();
     }
